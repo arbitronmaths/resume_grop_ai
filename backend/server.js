@@ -58,7 +58,7 @@ async function callGroqWithRetry(prompt, maxRetries = 3) {
     try {
       console.log(`Attempt ${attempt} to call Groq API...`);
       const response = await axios.post(GROQ_API_URL, {
-        model: "llama3-8b-8192",
+        model: "llama-3.3-70b-versatile",
         messages: [
           {
             role: "system",
@@ -80,7 +80,7 @@ async function callGroqWithRetry(prompt, maxRetries = 3) {
 
       return response.data?.choices?.[0]?.message?.content;
     } catch (error) {
-      console.error(`Attempt ${attempt} failed:`, error.response?.status, error.response?.statusText);
+      console.error(`Attempt ${attempt} failed:`, error.response?.status, error.response?.statusText,error.response?.data);
 
       if (error.response?.status === 429) {
         const waitTime = Math.pow(2, attempt) * 1000;
