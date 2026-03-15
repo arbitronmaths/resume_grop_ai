@@ -6,7 +6,7 @@ function ResumeUploader({ onDataExtracted }) {
     formData.append("resume", e.target.files[0]);
 
     try {
-      const res = await fetch("http://localhost:5000/upload", {
+      const res = await fetch("https://resume-grop-ai.onrender.com/upload", {
         method: "POST",
         body: formData,
       });
@@ -85,7 +85,7 @@ export default function ResumeBuilder() {
     setTips(null);
 
     try {
-      const res = await fetch("http://localhost:5000/analyze-resume", {
+      const res = await fetch("https://resume-grop-ai.onrender.com/analyze-resume", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
